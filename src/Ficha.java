@@ -1,10 +1,12 @@
 public class Ficha {
     private int ladoIz;
     private int ladoDe;
+    private boolean esDoble;
 
     public Ficha(int ladoIz, int ladoDe) {
         this.ladoIz = ladoIz;
         this.ladoDe = ladoDe;
+        this.esDoble = ladoDe == ladoIz;
     }
 
     public int getLadoIz() {
@@ -22,4 +24,19 @@ public class Ficha {
     public void setLadoDe(int ladoDe) {
         this.ladoDe = ladoDe;
     }
+
+    public boolean isEsDoble() {
+        return esDoble;
+    }
+
+    public void setEsDoble(boolean esDoble) {
+        this.esDoble = esDoble;
+    }
+
+    @Override
+
+    public String toString(){
+        return "["+ladoIz+"|"+ladoDe+"]";
+    }
+
 }
