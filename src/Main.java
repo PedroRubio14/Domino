@@ -1,9 +1,14 @@
 public class Main {
     public static void main(String[] args){
         Pais pa = new Pais();
-        Partida p = new Partida(pa,1);
+        Partida p = new Partida(pa,4);
 
-        Mano m = new Mano(p);
+        p.partida();
+
+
+
+
+
     }
 
 }

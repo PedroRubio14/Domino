@@ -1,13 +1,12 @@
 import java.util.ArrayList;
 
 public class Mano {
-    private int fichaXjug = 5;
+    private int fichaXjug = 7;
     private ArrayList<Ficha> fichas_mano;
 
     public Mano(Partida p) {
         fichas_mano = new ArrayList<>();
         cogerFichas(p.getMazo());
-        Textos.mostrar_mano(this);
     }
 
 

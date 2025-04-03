@@ -20,10 +20,10 @@ public class Mazo {
 
     public void crear_fichas(Partida p){
         ArrayList<Ficha> f = new ArrayList<>();
-        int num = p.getNumFicha()+1;
+        int num = p.getNumFicha();
 
-        for(int i = 0; i < num; i++){
-            for(int y = i; y <num; y++){
+        for(int i = 0; i <= num; i++){
+            for(int y = i; y <= num; y++){
                 f.add(new Ficha(i,y));
             }
         }

@@ -39,4 +39,12 @@ public class Ficha {
         return "["+ladoIz+"|"+ladoDe+"]";
     }
 
+    public void darLaVuelta(){
+        int temp1 = this.ladoDe;
+        int temp2 = this.ladoIz;
+
+        setLadoDe(temp2);
+        setLadoIz(temp1);
+    }
+
 }

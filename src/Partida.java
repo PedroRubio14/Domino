@@ -46,4 +46,27 @@ public class Partida {
     public void setNumFicha(int numFicha) {
         this.numFicha = numFicha;
     }
+
+
+    public void partida(){
+        Tablero t = new Tablero();
+        boolean partidaFinalizada = false;
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+        jugadores.add( new Jugador("Pedro",this));
+        jugadores.add( new Jugador("Ale",this));
+        jugadores.add(  new Jugador("Pau",this));
+        jugadores.add( new Jugador("Paco",this));
+
+
+
+
+        while(!partidaFinalizada){
+            for (Jugador jugadore : jugadores) {
+                Textos.mostrar_mano(jugadore);
+                jugadore.colocar_ficha(t);
+                Textos.mostrar_tablero(t);
+            }
+
+        }
+    }
 }
