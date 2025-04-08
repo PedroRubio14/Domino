@@ -33,7 +33,7 @@ public class Tablero {
 
 
     public boolean sePotColocar(Ficha f, int pos){
-        int lon = this.fichas_mesa.size();
+       int lon = this.fichas_mesa.size();
 
         if(lon == 0){
             return true;

@@ -40,10 +40,10 @@ public class Jugador {
 
 
     public void colocar_ficha(Tablero t){
-        Textos.imprimir("ficha para colocar");
+        Textos.imprimir("ficha_para_colocar");
         int nF = Textos.llegirINT();
         if(nF != -1){
-            Textos.imprimir("elegir donde colocar");
+            Textos.imprimir("elegir_donde_colocar");
             int nP = Textos.llegirINT();
             if(t.sePotColocar(this.getMano().getFichas_mano().get(nF),nP)){
                 t.colocarFicha(this,nF,nP);

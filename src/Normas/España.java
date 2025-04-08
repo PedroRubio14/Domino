@@ -13,15 +13,27 @@ public class España extends DominoGeneral{
     protected Mazo mazo = new Mazo(this);
     protected ArrayList<Jugador> jugadores = new ArrayList<>();
     protected Tablero tablero = new Tablero();
+    protected int puntuacionGanadora = 100;
 
 
     @Override
-    public void victoriaRonda() {
+    public boolean victoriaRonda(Jugador j) {
+        if(j.getMano().getFichas_mano().isEmpty()){
+            contarPuntos(j);
+            return true;
+        }
+        return false;
 
     }
 
     @Override
-    public void juegoTerminado() {
+    public boolean juegoTerminado() {
+        for(Jugador j: jugadores){
+            if(j.getPuntuacion()>= puntuacionGanadora){
+                return true;
+            }
+        }
+        return false;
 
     }
 
@@ -37,13 +49,27 @@ public class España extends DominoGeneral{
             for(int y = 0; y<tempMano.size();y++){
                 if(tempMano.get(y).isEsDoble() && tempMano.get(y).getLadoDe() == 6){
                     t.colocarFicha(jugadores.get(i),y,1);
-                    Textos.imprimir("Quien empieza",jugadores.get(i));
+                    Textos.imprimir("quien_empieza",jugadores.get(i));
                     Textos.mostrar_tablero(t);
                     return i;
                 }
             }
         }
         return 0;
+    }
+
+    @Override
+    public void contarPuntos(Jugador j) {
+        int puntos = 0;
+        for (Jugador jug : jugadores) {
+            if (jug != j) {
+                for (Ficha f : jug.getMano().getFichas_mano()) {
+                    puntos += f.getLadoDe() + f.getLadoIz();
+                }
+            }
+        }
+        j.setPuntuacion(puntos);
+
     }
 
     @Override

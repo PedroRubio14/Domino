@@ -11,10 +11,11 @@ public abstract class DominoGeneral {
     protected int fichasPorJugador;
 
 
-    public abstract void victoriaRonda();
-    public abstract void juegoTerminado();
+    public abstract boolean victoriaRonda(Jugador j);
+    public abstract boolean juegoTerminado();
     public abstract void ganador();
     public abstract int iniciarJuego(Tablero t);
+    public abstract void contarPuntos(Jugador j);
 
     public Mazo getMazo() {
         return mazo;
