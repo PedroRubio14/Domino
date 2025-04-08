@@ -1,12 +1,17 @@
+package PartesJuego;
+
+import Normas.DominoGeneral;
+
 import java.util.ArrayList;
 
 public class Mano {
-    private int fichaXjug = 7;
+    private int fichaXjug;
     private ArrayList<Ficha> fichas_mano;
 
-    public Mano(Partida p) {
+    public Mano(DominoGeneral d) {
+        this.fichaXjug = d.getFichasPorJugador();
         fichas_mano = new ArrayList<>();
-        cogerFichas(p.getMazo());
+        cogerFichas(d.getMazo());
     }
 
 

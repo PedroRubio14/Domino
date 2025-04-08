@@ -1,3 +1,5 @@
+package PartesJuego;
+
 import java.util.ArrayList;
 
 public class Tablero {

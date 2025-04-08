@@ -1,3 +1,8 @@
+package PartesJuego;
+
+
+import Otros.Textos;
+
 public class Jugador {
     private String nombre;
     private int puntuacion;
@@ -6,7 +11,7 @@ public class Jugador {
     public Jugador(String nombre, Partida p) {
         this.nombre = nombre;
         this.puntuacion = 0;
-        this.mano = new Mano(p);
+        this.mano = new Mano(p.getModoJuego());
     }
 
     public Mano getMano() {

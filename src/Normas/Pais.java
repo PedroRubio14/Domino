@@ -1,5 +1,6 @@
-public class Pais {
-    public enum paises {
+package Normas;
+
+public enum Pais {
         españa, mexico, llati, colombia, chile, venezuela, ponce
-    }
+
 }
