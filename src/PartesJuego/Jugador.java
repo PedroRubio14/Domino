@@ -40,15 +40,28 @@ public class Jugador {
 
 
     public void colocar_ficha(Tablero t){
-        Textos.imprimir("ficha_para_colocar");
-        int nF = Textos.llegirINT();
-        if(nF != -1){
-            Textos.imprimir("elegir_donde_colocar");
-            int nP = Textos.llegirINT();
-            if(t.sePotColocar(this.getMano().getFichas_mano().get(nF),nP)){
-                t.colocarFicha(this,nF,nP);
-            }
+        boolean fichaColocada = false;
+        while (!fichaColocada) {
+            Textos.imprimir("ficha_para_colocar");
+            int nF = Textos.llegirINT();
+            if (nF < this.getMano().getFichas_mano().size() && nF >= 0) {
+                Textos.imprimir("elegir_donde_colocar");
+                int nP = Textos.llegirINT();
+                if(nP == 1 || nP == 2) {
+                    if (t.sePotColocar(this.getMano().getFichas_mano().get(nF), nP)) {
+                        t.colocarFicha(this, nF, nP);
+                        fichaColocada = true;
+                    }
+                }
 
+            }
+            if(!fichaColocada){
+                Textos.imprimir("Error_colocar");
+            }
+            if(nF == -1){
+                Textos.imprimir("pasar_turno");
+                break;
+            }
         }
 
 

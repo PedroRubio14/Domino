@@ -8,6 +8,7 @@ import PartesJuego.*;
 import java.util.ArrayList;
 
 public class España extends DominoGeneral{
+    protected int numJugadores = 4;
     protected int maxNumCara = 6;
     protected int fichasPorJugador = 7;
     protected Mazo mazo = new Mazo(this);
@@ -120,5 +121,21 @@ public class España extends DominoGeneral{
     @Override
     public void setFichasPorJugador(int fichasPorJugador) {
         this.fichasPorJugador = fichasPorJugador;
+    }
+
+    public int getPuntuacionGanadora() {
+        return puntuacionGanadora;
+    }
+
+    public void setPuntuacionGanadora(int puntuacionGanadora) {
+        this.puntuacionGanadora = puntuacionGanadora;
+    }
+
+    public int getNumJugadores() {
+        return numJugadores;
+    }
+
+    public void setNumJugadores(int numJugadores) {
+        this.numJugadores = numJugadores;
     }
 }

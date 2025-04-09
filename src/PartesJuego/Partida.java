@@ -46,10 +46,12 @@ public class Partida {
         Tablero t = modoJuego.getTablero();
 
         ArrayList<Jugador> jugadores = modoJuego.getJugadores();
-        jugadores.add( new Jugador("Pedro",this));
-        jugadores.add( new Jugador("Ale",this));
-        jugadores.add(  new Jugador("Pau",this));
-        jugadores.add( new Jugador("Paco",this));
+
+        for(int i = 0;i<modoJuego.getNumJugadores();i++){
+            Textos.imprimir("iniciar_usuario",(Integer) i);
+            String nombre = Textos.llegirString();
+            jugadores.add( new Jugador(nombre, this));
+        }
         modoJuego.setJugadores(jugadores);
 
 
@@ -62,26 +64,26 @@ public class Partida {
         boolean partidaFinalizada = false;
         boolean rondaFinalizada = false;
 
-        while(!partidaFinalizada){
 
-            while(!rondaFinalizada){
+            while(!partidaFinalizada){
                 for (int i = indexPrimero; i<jugadores.size();i++) {
                     Textos.mostrar_mano(jugadores.get(i));
                     jugadores.get(i).colocar_ficha(t);
                     Textos.mostrar_tablero(t);
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
                         Textos.imprimir("ganador_ronda", jugadores.get(i));
-                        rondaFinalizada = true;
                         break;
                     }
                 }
                 indexPrimero= 0;
 
+                partidaFinalizada = modoJuego.juegoTerminado();
+
             }
 
 
 
-        }
+
 
     }
 

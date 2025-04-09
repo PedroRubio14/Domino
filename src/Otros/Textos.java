@@ -11,7 +11,14 @@ public class Textos {
     static Scanner sc = new Scanner(System.in);
 
     public static int llegirINT(){
-        return sc.nextInt();
+        int i = sc.nextInt();
+        sc.nextLine();
+        return i;
+
+    }
+
+    public static String llegirString (){
+        return sc.nextLine();
     }
 
 
@@ -73,6 +80,13 @@ public class Textos {
                         "Ahora tiene "+ ((Jugador) args[0]).getPuntuacion()+" puntos."
         );
 
+        mensajes.put("iniciar_usuario", args ->
+                "Indica el nombre del jugador numero " + ((Integer) args[0]).toString()+": "
+        );
+        mensajes.put("mensaje_no_definido", args ->
+                "mensaje no definido "
+        );
+
 
 
     }
@@ -80,6 +94,7 @@ public class Textos {
     public static void imprimir(String clave, Object... args) {
         Function<Object[], String> generador = mensajes.get(clave);
         if (generador != null) {
+            System.out.println();
             System.out.println(generador.apply(args));
         } else {
             mensajes.get("mensaje_no_definido").apply(new Object[]{clave});

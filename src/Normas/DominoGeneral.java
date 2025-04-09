@@ -4,11 +4,13 @@ import PartesJuego.*;
 import java.util.ArrayList;
 
 public abstract class DominoGeneral {
+    protected int numJugadores;
     protected Mazo mazo;
     protected ArrayList<Jugador> jugadores;
     protected Tablero tablero;
     protected int maxNumCara;
     protected int fichasPorJugador;
+    protected int puntuacionGanadora;
 
 
     public abstract boolean victoriaRonda(Jugador j);
@@ -55,5 +57,21 @@ public abstract class DominoGeneral {
 
     public void setFichasPorJugador(int fichasPorJugador) {
         this.fichasPorJugador = fichasPorJugador;
+    }
+
+    public int getNumJugadores() {
+        return numJugadores;
+    }
+
+    public void setNumJugadores(int numJugadores) {
+        this.numJugadores = numJugadores;
+    }
+
+    public int getPuntuacionGanadora() {
+        return puntuacionGanadora;
+    }
+
+    public void setPuntuacionGanadora(int puntuacionGanadora) {
+        this.puntuacionGanadora = puntuacionGanadora;
     }
 }
