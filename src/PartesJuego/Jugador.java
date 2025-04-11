@@ -41,6 +41,7 @@ public class Jugador {
 
     public void colocar_ficha(Tablero t){
         boolean fichaColocada = false;
+
         while (!fichaColocada) {
             Textos.imprimir("ficha_para_colocar");
             int nF = Textos.llegirINT();
@@ -55,13 +56,14 @@ public class Jugador {
                 }
 
             }
+            if(nF == -1){
+                Textos.imprimir("pasar_turno",this);
+                break;
+            }
             if(!fichaColocada){
                 Textos.imprimir("Error_colocar");
             }
-            if(nF == -1){
-                Textos.imprimir("pasar_turno");
-                break;
-            }
+
         }
 
 

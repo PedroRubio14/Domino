@@ -1,15 +1,12 @@
 package PartesJuego;
 
-import Normas.DominoGeneral;
-
 import java.util.ArrayList;
 
 public class Mazo {
     private ArrayList<Ficha> fichas;
 
-    public Mazo(DominoGeneral p) {
+    public Mazo() {
         this.fichas = new ArrayList<>();
-        crear_fichas(p);
 
     }
 
@@ -22,9 +19,9 @@ public class Mazo {
     }
 
 
-    public void crear_fichas(DominoGeneral p){
+    public void crear_fichas(int n){
         ArrayList<Ficha> f = new ArrayList<>();
-        int num = p.getMaxNumCara();
+        int num = n;
 
         for(int i = 0; i <= num; i++){
             for(int y = i; y <= num; y++){

@@ -8,14 +8,24 @@ import PartesJuego.*;
 import java.util.ArrayList;
 
 public class España extends DominoGeneral{
-    protected int numJugadores = 4;
-    protected int maxNumCara = 6;
-    protected int fichasPorJugador = 7;
-    protected Mazo mazo = new Mazo(this);
-    protected ArrayList<Jugador> jugadores = new ArrayList<>();
-    protected Tablero tablero = new Tablero();
-    protected int puntuacionGanadora = 100;
 
+    public España() {
+        super(4, new Mazo(), new ArrayList<>(),new Tablero(), 6, 7, 100,jugarEnPareja());
+    }
+
+    public static boolean jugarEnPareja(){
+        Textos.imprimir("parejas_si_no");
+        String i = Textos.llegirString();
+        i= i.toLowerCase();
+        switch (i){
+            case "s":
+                return true;
+            case "n":
+                return false;
+        }
+        return false;
+
+    }
 
     @Override
     public boolean victoriaRonda(Jugador j) {
@@ -31,6 +41,7 @@ public class España extends DominoGeneral{
     public boolean juegoTerminado() {
         for(Jugador j: jugadores){
             if(j.getPuntuacion()>= puntuacionGanadora){
+                Textos.imprimir("ganador", j);
                 return true;
             }
         }
@@ -40,6 +51,7 @@ public class España extends DominoGeneral{
 
     @Override
     public void ganador() {
+
 
     }
 
@@ -71,71 +83,5 @@ public class España extends DominoGeneral{
         }
         j.setPuntuacion(puntos);
 
-    }
-
-    @Override
-    public ArrayList<Jugador> getJugadores() {
-        return jugadores;
-    }
-
-    @Override
-    public void setJugadores(ArrayList<Jugador> jugadores) {
-        this.jugadores = jugadores;
-    }
-
-    @Override
-    public Mazo getMazo() {
-        return mazo;
-    }
-
-    @Override
-    public void setMazo(Mazo mazo) {
-        this.mazo = mazo;
-    }
-
-    @Override
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    @Override
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
-
-    @Override
-    public int getMaxNumCara() {
-        return maxNumCara;
-    }
-
-    @Override
-    public void setMaxNumCara(int maxNumCara) {
-        this.maxNumCara = maxNumCara;
-    }
-
-    @Override
-    public int getFichasPorJugador() {
-        return fichasPorJugador;
-    }
-
-    @Override
-    public void setFichasPorJugador(int fichasPorJugador) {
-        this.fichasPorJugador = fichasPorJugador;
-    }
-
-    public int getPuntuacionGanadora() {
-        return puntuacionGanadora;
-    }
-
-    public void setPuntuacionGanadora(int puntuacionGanadora) {
-        this.puntuacionGanadora = puntuacionGanadora;
-    }
-
-    public int getNumJugadores() {
-        return numJugadores;
-    }
-
-    public void setNumJugadores(int numJugadores) {
-        this.numJugadores = numJugadores;
     }
 }

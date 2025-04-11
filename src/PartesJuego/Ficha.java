@@ -8,7 +8,7 @@ public class Ficha {
     public Ficha(int ladoIz, int ladoDe) {
         this.ladoIz = ladoIz;
         this.ladoDe = ladoDe;
-        this.esDoble = ladoDe == ladoIz;
+        this.esDoble = (ladoDe == ladoIz);
     }
 
     public int getLadoIz() {

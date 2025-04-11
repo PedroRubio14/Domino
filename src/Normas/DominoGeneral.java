@@ -11,7 +11,19 @@ public abstract class DominoGeneral {
     protected int maxNumCara;
     protected int fichasPorJugador;
     protected int puntuacionGanadora;
+    protected boolean parejas;
 
+    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas) {
+        this.numJugadores = numJugadores;
+        this.mazo = mazo;
+        this.jugadores = jugadores;
+        this.tablero = tablero;
+        this.maxNumCara = maxNumCara;
+        this.fichasPorJugador = fichasPorJugador;
+        this.puntuacionGanadora = puntuacionGanadora;
+        this.parejas = parejas;
+
+    }
 
     public abstract boolean victoriaRonda(Jugador j);
     public abstract boolean juegoTerminado();
@@ -73,5 +85,13 @@ public abstract class DominoGeneral {
 
     public void setPuntuacionGanadora(int puntuacionGanadora) {
         this.puntuacionGanadora = puntuacionGanadora;
+    }
+
+    public boolean isParejas() {
+        return parejas;
+    }
+
+    public void setParejas(boolean parejas) {
+        this.parejas = parejas;
     }
 }

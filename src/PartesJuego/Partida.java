@@ -8,7 +8,9 @@ import java.util.ArrayList;
 
 public class Partida {
 
-    public Partida() {
+    private DominoGeneral modoJuego;
+
+    public static DominoGeneral crearPartida(){
         Textos.imprimir("Elegir_modo_juego");
         int modo_juego = Textos.llegirINT();
         DominoGeneral juego = null;
@@ -37,10 +39,15 @@ public class Partida {
                 break;*/
 
         }
-        this.modoJuego = juego;
+        return juego;
     }
 
-    private DominoGeneral modoJuego;
+    public Partida() {
+        this.modoJuego = crearPartida();
+
+    }
+
+
 
     public void partida(){
         Tablero t = modoJuego.getTablero();
@@ -55,31 +62,44 @@ public class Partida {
         modoJuego.setJugadores(jugadores);
 
 
-
-
-        int indexPrimero = modoJuego.iniciarJuego(t);
-        indexPrimero++;
-
-
         boolean partidaFinalizada = false;
-        boolean rondaFinalizada = false;
 
 
-            while(!partidaFinalizada){
+        while(!partidaFinalizada){
+
+            modoJuego.getMazo().crear_fichas(modoJuego.getMaxNumCara());
+
+            for(Jugador j: jugadores){
+                j.getMano().cogerFichas(modoJuego.getMazo());
+            }
+
+            modoJuego.setTablero(new Tablero());
+
+            int indexPrimero = modoJuego.iniciarJuego(t);
+            indexPrimero++;
+
+            boolean rondaFinalizada = modoJuego.juegoTerminado();
+
+            while(!rondaFinalizada){
                 for (int i = indexPrimero; i<jugadores.size();i++) {
                     Textos.mostrar_mano(jugadores.get(i));
                     jugadores.get(i).colocar_ficha(t);
                     Textos.mostrar_tablero(t);
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
                         Textos.imprimir("ganador_ronda", jugadores.get(i));
+                        rondaFinalizada= true;
                         break;
                     }
                 }
                 indexPrimero= 0;
 
-                partidaFinalizada = modoJuego.juegoTerminado();
 
             }
+            partidaFinalizada = modoJuego.juegoTerminado();
+
+        }
+
+
 
 
 

@@ -11,7 +11,6 @@ public class Mano {
     public Mano(DominoGeneral d) {
         this.fichaXjug = d.getFichasPorJugador();
         fichas_mano = new ArrayList<>();
-        cogerFichas(d.getMazo());
     }
 
 

@@ -11,10 +11,16 @@ public class Textos {
     static Scanner sc = new Scanner(System.in);
 
     public static int llegirINT(){
-        int i = sc.nextInt();
-        sc.nextLine();
-        return i;
-
+        while (true) {
+            try {
+                int i = sc.nextInt();
+                sc.nextLine(); // limpiar el salto de línea
+                return i;
+            } catch (InputMismatchException e) {
+                System.out.println("No se ha introducido un número válido. Inténtalo de nuevo:");
+                sc.nextLine();
+            }
+        }
     }
 
     public static String llegirString (){
@@ -85,6 +91,23 @@ public class Textos {
         );
         mensajes.put("mensaje_no_definido", args ->
                 "mensaje no definido "
+        );
+
+        mensajes.put("Error_colocar", args ->
+                "Ha ocurrido un error al colocar la ficha, intentalo de nuevo. "
+        );
+
+        mensajes.put("pasar_turno", args ->
+                "El jugador " + ((Jugador) args[0]).getNombre()+" pasa de turno."
+        );
+
+        mensajes.put("ganador", args ->
+                "El jugador " + ((Jugador) args[0]).getNombre()+" HA GANADO LA PARTIDA!!! \n" +
+                        "TIENE "+((Jugador) args[0]).getPuntuacion()+" PUNTOS"
+        );
+
+        mensajes.put("parejas_si_no", args ->
+                "Queres jugar la partida en parejas? si: s   no: n"
         );
 
 
