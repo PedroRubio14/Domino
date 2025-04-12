@@ -28,6 +28,10 @@ public class Mano {
         this.setFichas_mano(fichasMano);
     }
 
+    public void vaciarMano(){
+        fichas_mano.clear();
+    }
+
     public ArrayList<Ficha> getFichas_mano() {
         return fichas_mano;
     }

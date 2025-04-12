@@ -61,6 +61,12 @@ public class Partida {
         }
         modoJuego.setJugadores(jugadores);
 
+        if(modoJuego.isParejas()){
+            Parejas p1 = new Parejas(jugadores.get(0),jugadores.get(2));
+            Parejas p2 = new Parejas(jugadores.get(1),jugadores.get(3));
+
+        }
+
 
         boolean partidaFinalizada = false;
 
@@ -70,10 +76,9 @@ public class Partida {
             modoJuego.getMazo().crear_fichas(modoJuego.getMaxNumCara());
 
             for(Jugador j: jugadores){
+                j.getMano().vaciarMano();
                 j.getMano().cogerFichas(modoJuego.getMazo());
             }
-
-            modoJuego.setTablero(new Tablero());
 
             int indexPrimero = modoJuego.iniciarJuego(t);
             indexPrimero++;
@@ -86,8 +91,15 @@ public class Partida {
                     jugadores.get(i).colocar_ficha(t);
                     Textos.mostrar_tablero(t);
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
-                        Textos.imprimir("ganador_ronda", jugadores.get(i));
+
+                        if(modoJuego.isParejas()){
+                            Textos.imprimir("ganador_ronda_parejas", jugadores.get(i).getPareja());
+
+                        } else {
+                            Textos.imprimir("ganador_ronda", jugadores.get(i));
+                        }
                         rondaFinalizada= true;
+                        t.borrarTablero();
                         break;
                     }
                 }

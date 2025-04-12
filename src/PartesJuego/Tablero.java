@@ -72,6 +72,10 @@ public class Tablero {
 
     }
 
+    public void borrarTablero(){
+        fichas_mesa.clear();
+    }
+
 
 
 }

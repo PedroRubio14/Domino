@@ -2,6 +2,7 @@ package Otros;
 
 import PartesJuego.Ficha;
 import PartesJuego.Jugador;
+import PartesJuego.Parejas;
 import PartesJuego.Tablero;
 
 import java.util.*;
@@ -86,6 +87,11 @@ public class Textos {
                         "Ahora tiene "+ ((Jugador) args[0]).getPuntuacion()+" puntos."
         );
 
+        mensajes.put("ganador_ronda_parejas", args ->
+                "ENHORABUENA " + ((Parejas) args[0]).toString()+" HAN GANADO ESTA RONDA!! \n" +
+                        "Ahora tiene "+ ((Parejas) args[0]).getPuntos()+" puntos."
+        );
+
         mensajes.put("iniciar_usuario", args ->
                 "Indica el nombre del jugador numero " + ((Integer) args[0]).toString()+": "
         );
@@ -103,11 +109,14 @@ public class Textos {
 
         mensajes.put("ganador", args ->
                 "El jugador " + ((Jugador) args[0]).getNombre()+" HA GANADO LA PARTIDA!!! \n" +
-                        "TIENE "+((Jugador) args[0]).getPuntuacion()+" PUNTOS"
+                        "TIENEN "+((Jugador) args[0]).getPuntuacion()+" PUNTOS"
         );
 
         mensajes.put("parejas_si_no", args ->
                 "Queres jugar la partida en parejas? si: s   no: n"
+        );
+        mensajes.put("parejas_ex", args ->
+                "Las parejas estaran formadas por los jugadores 0 i 2, y por los jugadores 1 y 3"
         );
 
 

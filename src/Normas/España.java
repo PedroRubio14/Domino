@@ -19,6 +19,7 @@ public class España extends DominoGeneral{
         i= i.toLowerCase();
         switch (i){
             case "s":
+                Textos.imprimir("parejas_ex");
                 return true;
             case "n":
                 return false;
@@ -73,15 +74,35 @@ public class España extends DominoGeneral{
 
     @Override
     public void contarPuntos(Jugador j) {
+        boolean parejas = (j.getPareja() != null);
         int puntos = 0;
-        for (Jugador jug : jugadores) {
-            if (jug != j) {
-                for (Ficha f : jug.getMano().getFichas_mano()) {
-                    puntos += f.getLadoDe() + f.getLadoIz();
+
+        if(parejas){
+            Jugador j1 = j.getPareja().getJugador1();
+            Jugador j2 = j.getPareja().getJugador2();
+
+            for (Jugador jug : jugadores) {
+                if (jug != j1 && jug != j2) {
+                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                        puntos += f.getLadoDe() + f.getLadoIz();
+                    }
                 }
             }
+
+            j.setPuntuacion(puntos);
+            j.getPareja().sumarPuntos();
+
+        } else {
+
+            for (Jugador jug : jugadores) {
+                if (jug != j) {
+                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                        puntos += f.getLadoDe() + f.getLadoIz();
+                    }
+                }
+            }
+            j.setPuntuacion(puntos);
         }
-        j.setPuntuacion(puntos);
 
     }
 }

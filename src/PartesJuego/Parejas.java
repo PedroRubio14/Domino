@@ -8,6 +8,9 @@ public class Parejas {
     public Parejas(Jugador jugador1, Jugador jugador2) {
         this.jugador1 = jugador1;
         this.jugador2 = jugador2;
+
+        jugador1.setPareja(this);
+        jugador2.setPareja(this);
     }
 
     public void sumarPuntos(){
@@ -19,6 +22,14 @@ public class Parejas {
         setPuntos(puntosTotales);
 
     }
+
+
+    @Override
+    public String toString(){
+        return jugador1.getNombre()+", "+jugador2.getNombre();
+    }
+
+
 
     public int getPuntos() {
         return puntos;

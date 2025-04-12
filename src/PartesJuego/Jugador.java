@@ -7,6 +7,7 @@ public class Jugador {
     private String nombre;
     private int puntuacion;
     private Mano mano;
+    private Parejas pareja;
 
     public Jugador(String nombre, Partida p) {
         this.nombre = nombre;
@@ -38,6 +39,13 @@ public class Jugador {
         this.puntuacion = puntuacion;
     }
 
+    public Parejas getPareja() {
+        return pareja;
+    }
+
+    public void setPareja(Parejas pareja) {
+        this.pareja = pareja;
+    }
 
     public void colocar_ficha(Tablero t){
         boolean fichaColocada = false;
