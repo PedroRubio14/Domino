@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class España extends DominoGeneral{
 
     public España() {
-        super(4, new Mazo(), new ArrayList<>(),new Tablero(), 6, 7, 100,jugarEnPareja());
+        super(4, new Mazo(), new ArrayList<>(),new Tablero(), 6, 7, 100,jugarEnPareja(), false);
     }
 
     public static boolean jugarEnPareja(){
@@ -25,34 +25,6 @@ public class España extends DominoGeneral{
                 return false;
         }
         return false;
-
-    }
-
-    @Override
-    public boolean victoriaRonda(Jugador j) {
-        if(j.getMano().getFichas_mano().isEmpty()){
-            contarPuntos(j);
-            return true;
-        }
-        return false;
-
-    }
-
-    @Override
-    public boolean juegoTerminado() {
-        for(Jugador j: jugadores){
-            if(j.getPuntuacion()>= puntuacionGanadora){
-                Textos.imprimir("ganador", j);
-                return true;
-            }
-        }
-        return false;
-
-    }
-
-    @Override
-    public void ganador() {
-
 
     }
 
@@ -73,36 +45,5 @@ public class España extends DominoGeneral{
     }
 
     @Override
-    public void contarPuntos(Jugador j) {
-        boolean parejas = (j.getPareja() != null);
-        int puntos = 0;
-
-        if(parejas){
-            Jugador j1 = j.getPareja().getJugador1();
-            Jugador j2 = j.getPareja().getJugador2();
-
-            for (Jugador jug : jugadores) {
-                if (jug != j1 && jug != j2) {
-                    for (Ficha f : jug.getMano().getFichas_mano()) {
-                        puntos += f.getLadoDe() + f.getLadoIz();
-                    }
-                }
-            }
-
-            j.setPuntuacion(puntos);
-            j.getPareja().sumarPuntos();
-
-        } else {
-
-            for (Jugador jug : jugadores) {
-                if (jug != j) {
-                    for (Ficha f : jug.getMano().getFichas_mano()) {
-                        puntos += f.getLadoDe() + f.getLadoIz();
-                    }
-                }
-            }
-            j.setPuntuacion(puntos);
-        }
-
-    }
+    public void robar(Jugador j) {}
 }

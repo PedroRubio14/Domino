@@ -6,6 +6,7 @@ public class Tablero {
     private ArrayList<Ficha> fichas_mesa;
 
 
+
     public Tablero() {
         this.fichas_mesa = new ArrayList<>();
     }
@@ -74,6 +75,30 @@ public class Tablero {
 
     public void borrarTablero(){
         fichas_mesa.clear();
+    }
+
+    public boolean tableroBloqueado(int maxReps){
+
+        int tableroLado2 = fichas_mesa.get((fichas_mesa.size())-1).getLadoDe();
+        int tableroLado1 = fichas_mesa.get(0).getLadoIz();
+        int nlado1 = 0;
+        int nlado2 = 0;
+
+        for(Ficha f: fichas_mesa){
+            if(f.getLadoIz() == tableroLado1 || f.getLadoDe() == tableroLado1){
+                nlado1++;
+            }
+            if(f.getLadoIz() == tableroLado2 || f.getLadoDe() == tableroLado2){
+                nlado2++;
+            }
+
+
+        }
+        if(nlado1 == maxReps && nlado2 == maxReps){
+            return true;
+        }
+
+        return false;
     }
 
 

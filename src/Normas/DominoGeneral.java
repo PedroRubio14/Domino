@@ -1,4 +1,5 @@
 package Normas;
+import Otros.Textos;
 import PartesJuego.*;
 
 import java.util.ArrayList;
@@ -12,8 +13,10 @@ public abstract class DominoGeneral {
     protected int fichasPorJugador;
     protected int puntuacionGanadora;
     protected boolean parejas;
+    protected boolean robar;
+    private int maxRepeticionFicha;
 
-    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas) {
+    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas, boolean robar) {
         this.numJugadores = numJugadores;
         this.mazo = mazo;
         this.jugadores = jugadores;
@@ -22,14 +25,83 @@ public abstract class DominoGeneral {
         this.fichasPorJugador = fichasPorJugador;
         this.puntuacionGanadora = puntuacionGanadora;
         this.parejas = parejas;
+        this.robar = robar;
+        this.maxRepeticionFicha = maxNumCara+1;
 
     }
 
-    public abstract boolean victoriaRonda(Jugador j);
-    public abstract boolean juegoTerminado();
-    public abstract void ganador();
+
     public abstract int iniciarJuego(Tablero t);
-    public abstract void contarPuntos(Jugador j);
+
+    public abstract void robar(Jugador j);
+
+    public boolean victoriaRonda(Jugador j){
+        if (j.getMano().getFichas_mano().isEmpty()) {
+            contarPuntos(j);
+            return true;
+        }
+
+        if (this.getTablero().tableroBloqueado(this.getMaxRepeticionFicha())) {
+            int puntosJugador = j.getPuntuacionEnMano();
+
+            for (Jugador otro : jugadores) {
+                if (otro == j) continue;
+                if (otro.getPuntuacionEnMano() < puntosJugador) {
+                    return false;
+                }
+            }
+            contarPuntos(j);
+            return true;
+        }
+
+        return false;
+
+    }
+    public boolean juegoTerminado() {
+        for(Jugador j: jugadores){
+            if(j.getPuntuacion()>= puntuacionGanadora) {
+                Textos.imprimir("ganador", j);
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+
+    public void contarPuntos(Jugador j){
+        boolean parejas = (j.getPareja() != null);
+        int puntos = 0;
+
+        if(parejas){
+            Jugador j1 = j.getPareja().getJugador1();
+            Jugador j2 = j.getPareja().getJugador2();
+
+            for (Jugador jug : jugadores) {
+                if (jug != j1 && jug != j2) {
+                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                        puntos += f.getLadoDe() + f.getLadoIz();
+                    }
+                }
+            }
+
+            j.setPuntuacion(puntos);
+            j.getPareja().sumarPuntos();
+
+        } else {
+
+            for (Jugador jug : jugadores) {
+                if (jug != j) {
+                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                        puntos += f.getLadoDe() + f.getLadoIz();
+                    }
+                }
+            }
+            j.setPuntuacion(puntos);
+        }
+
+    }
+
 
     public Mazo getMazo() {
         return mazo;
@@ -67,24 +139,8 @@ public abstract class DominoGeneral {
         return fichasPorJugador;
     }
 
-    public void setFichasPorJugador(int fichasPorJugador) {
-        this.fichasPorJugador = fichasPorJugador;
-    }
-
     public int getNumJugadores() {
         return numJugadores;
-    }
-
-    public void setNumJugadores(int numJugadores) {
-        this.numJugadores = numJugadores;
-    }
-
-    public int getPuntuacionGanadora() {
-        return puntuacionGanadora;
-    }
-
-    public void setPuntuacionGanadora(int puntuacionGanadora) {
-        this.puntuacionGanadora = puntuacionGanadora;
     }
 
     public boolean isParejas() {
@@ -93,5 +149,13 @@ public abstract class DominoGeneral {
 
     public void setParejas(boolean parejas) {
         this.parejas = parejas;
+    }
+
+    public int getMaxRepeticionFicha() {
+        return maxRepeticionFicha;
+    }
+
+    public boolean isRobar() {
+        return robar;
     }
 }

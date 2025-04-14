@@ -1,6 +1,7 @@
 package PartesJuego;
 
 
+import Normas.DominoGeneral;
 import Otros.Textos;
 
 public class Jugador {
@@ -47,7 +48,7 @@ public class Jugador {
         this.pareja = pareja;
     }
 
-    public void colocar_ficha(Tablero t){
+    public void colocar_ficha(Tablero t, DominoGeneral dom){
         boolean fichaColocada = false;
 
         while (!fichaColocada) {
@@ -65,6 +66,9 @@ public class Jugador {
 
             }
             if(nF == -1){
+                if(dom.isRobar()){
+                    dom.robar(this);
+                }
                 Textos.imprimir("pasar_turno",this);
                 break;
             }
@@ -79,5 +83,13 @@ public class Jugador {
     }
 
 
+    public int getPuntuacionEnMano() {
+        int total=0;
+        for(Ficha f: getMano().getFichas_mano()){
+            total += f.getLadoDe();
+            total += f.getLadoIz();
 
+        }
+        return total;
+    }
 }

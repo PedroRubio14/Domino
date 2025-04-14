@@ -1,6 +1,7 @@
 package PartesJuego;
 import Normas.DominoGeneral;
 import Normas.España;
+import Normas.Ponce;
 import Otros.Textos;
 
 import java.lang.invoke.SwitchPoint;
@@ -27,10 +28,10 @@ public class Partida {
                 break;
             case 4:
                 juego = new Latino();
-                break;
+                break; */
             case 5:
                 juego = new Ponce();
-                break;
+                break;/*
             case 6:
                 juego = new Venezolano();
                 break;
@@ -88,7 +89,7 @@ public class Partida {
             while(!rondaFinalizada){
                 for (int i = indexPrimero; i<jugadores.size();i++) {
                     Textos.mostrar_mano(jugadores.get(i));
-                    jugadores.get(i).colocar_ficha(t);
+                    jugadores.get(i).colocar_ficha(t,modoJuego);
                     Textos.mostrar_tablero(t);
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
 
@@ -98,6 +99,7 @@ public class Partida {
                         } else {
                             Textos.imprimir("ganador_ronda", jugadores.get(i));
                         }
+
                         rondaFinalizada= true;
                         t.borrarTablero();
                         break;

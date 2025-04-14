@@ -69,7 +69,7 @@ public class Textos {
         );
 
         mensajes.put("quien_empieza", args ->
-                "Ha empezado " + ((Jugador) args[0]).getNombre() + " porque tenía el doble seis."
+                "Ha empezado " + ((Jugador) args[0]).getNombre() + " porque tenía el doble mas alto."
         );
 
         mensajes.put("Elegir_modo_juego", args ->
