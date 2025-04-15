@@ -1,10 +1,14 @@
-/*package Normas;
+package Normas;
+
 import Otros.Textos;
-import PartesJuego.*;
+import PartesJuego.Ficha;
+import PartesJuego.Jugador;
+import PartesJuego.Mazo;
+import PartesJuego.Tablero;
 
 import java.util.ArrayList;
 
-public abstract class DominoGeneral {
+public class ConfiguracionNormas {
     protected int numJugadores;
     protected Mazo mazo;
     protected ArrayList<Jugador> jugadores;
@@ -15,23 +19,23 @@ public abstract class DominoGeneral {
     protected boolean parejas;
     protected boolean robar;
     protected int maxRepeticionFicha;
+    protected boolean tableroIndividual;
 
-    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas, boolean robar) {
-        this.numJugadores = numJugadores;
-        this.mazo = mazo;
-        this.jugadores = jugadores;
-        this.tablero = tablero;
-        this.maxNumCara = maxNumCara;
-        this.fichasPorJugador = fichasPorJugador;
-        this.puntuacionGanadora = puntuacionGanadora;
-        this.parejas = parejas;
-        this.robar = robar;
-        this.maxRepeticionFicha = maxNumCara+1;
+    public static boolean jugarEnPareja(){
+        Textos.imprimir("parejas_si_no");
+        String i = Textos.llegirString();
+        i= i.toLowerCase();
+        switch (i){
+            case "s":
+                Textos.imprimir("parejas_ex");
+                return true;
+            case "n":
+                return false;
+        }
+        return false;
 
     }
 
-
-    public abstract int iniciarJuego(Tablero t);
 
     public void robar(Jugador j){
 
@@ -58,7 +62,7 @@ public abstract class DominoGeneral {
 
     }
 
-    public static boolean jugarEnPareja(){
+    public static boolean jugarEnPareja_true(){
         Textos.imprimir("parejas_ex");
         return true;
     }
@@ -187,6 +191,25 @@ public abstract class DominoGeneral {
     public int getPuntuacionGanadora() {
         return puntuacionGanadora;
     }
-}
 
- */
+
+    public int iniciarJuego(Tablero t) {
+        int [] indexMax = {0,0};
+        int max =0;
+        for(int i = 0; i<jugadores.size();i++){
+            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
+                if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
+                    max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
+                    indexMax[0]= i;
+                    indexMax[1]= y;
+
+                }
+            }
+
+        }
+        t.colocarFicha(jugadores.get(indexMax[0]),indexMax[1],1);
+        Textos.imprimir("quien_empieza",jugadores.get(indexMax[0]));
+        Textos.mostrar_tablero(t);
+        return indexMax[0];
+    }
+}

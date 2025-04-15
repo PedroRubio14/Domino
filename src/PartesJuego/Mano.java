@@ -1,6 +1,6 @@
 package PartesJuego;
 
-import Normas.DominoGeneral;
+import Normas.ConfiguracionNormas;
 
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Mano {
     private int fichaXjug;
     private ArrayList<Ficha> fichas_mano;
 
-    public Mano(DominoGeneral d) {
+    public Mano(ConfiguracionNormas d) {
         this.fichaXjug = d.getFichasPorJugador();
         fichas_mano = new ArrayList<>();
     }

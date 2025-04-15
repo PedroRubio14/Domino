@@ -1,7 +1,7 @@
 package PartesJuego;
 
 
-import Normas.DominoGeneral;
+import Normas.ConfiguracionNormas;
 import Otros.Textos;
 
 public class Jugador {
@@ -48,7 +48,7 @@ public class Jugador {
         this.pareja = pareja;
     }
 
-    public void colocar_ficha(Tablero t, DominoGeneral dom){
+    public void colocar_ficha(Tablero t, ConfiguracionNormas dom){
         boolean fichaColocada = false;
 
         while (!fichaColocada) {
@@ -68,8 +68,10 @@ public class Jugador {
             if(nF == -1){
                 if(dom.isRobar()){
                     dom.robar(this);
+                }else {
+                    Textos.imprimir("pasar_turno",this);
                 }
-                Textos.imprimir("pasar_turno",this);
+
                 break;
             }
             if(!fichaColocada){

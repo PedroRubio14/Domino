@@ -1,43 +1,48 @@
 package PartesJuego;
-import Normas.DominoGeneral;
-import Normas.España;
-import Normas.Ponce;
+import Normas.*;
 import Otros.Textos;
 
-import java.lang.invoke.SwitchPoint;
 import java.util.ArrayList;
 
 public class Partida {
 
-    private DominoGeneral modoJuego;
+    private ConfiguracionNormas modoJuego;
 
-    public static DominoGeneral crearPartida(){
-        Textos.imprimir("Elegir_modo_juego");
-        int modo_juego = Textos.llegirINT();
-        DominoGeneral juego = null;
+    public static ConfiguracionNormas crearPartida(){
+        ConfiguracionNormas juego = null;
+        while(true) {
+            Textos.imprimir("Elegir_modo_juego");
+            int modo_juego = Textos.llegirINT();
 
-        switch(modo_juego){
-            case 1:
-                juego = new España();
+            switch (modo_juego) {
+                case 1:
+                    juego = ConfPaises.españa();
+                    break;
+                case 2:
+                    juego = ConfPaises.mexico();
+                    break;
+                case 3:
+                    juego = ConfPaises.chile();
+                    break;
+                case 4:
+                    juego = ConfPaises.latin();
+                    break;
+                case 5:
+                    juego = ConfPaises.ponce();
+                    break;
+                case 6:
+                    juego = ConfPaises.venezuela();
+                    break;
+                case 7:
+                    juego = ConfPaises.colombia();
+                    break;
+
+            }
+            if(modo_juego>0 && modo_juego<7){
+                Textos.imprimir("normas_juego",juego);
                 break;
-           /* case 2:
-                juego = new Mexico();
-                break;
-            case 3:
-                juego = new Chileno();
-                break;
-            case 4:
-                juego = new Latino();
-                break; */
-            case 5:
-                juego = new Ponce();
-                break;/*
-            case 6:
-                juego = new Venezolano();
-                break;
-            case 1:
-                juego = new Colombiano();
-                break;*/
+            }
+            Textos.imprimir("numero_no_valido");
 
         }
         return juego;
@@ -121,11 +126,11 @@ public class Partida {
 
     }
 
-    public DominoGeneral getModoJuego() {
+    public ConfiguracionNormas getModoJuego() {
         return modoJuego;
     }
 
-    public void setModoJuego(DominoGeneral modoJuego) {
+    public void setModoJuego(ConfiguracionNormas modoJuego) {
         this.modoJuego = modoJuego;
     }
 

@@ -1,5 +1,7 @@
 package Otros;
 
+import Normas.ConfiguracionNormas;
+import Normas.DominoGeneral;
 import PartesJuego.Ficha;
 import PartesJuego.Jugador;
 import PartesJuego.Parejas;
@@ -118,6 +120,41 @@ public class Textos {
         mensajes.put("parejas_ex", args ->
                 "Las parejas estaran formadas por los jugadores 0 i 2, y por los jugadores 1 y 3"
         );
+
+        mensajes.put("robar_s", args ->
+                "El jugador "+ ((Jugador) args[0]).getNombre()+" ha robado una ficha porque no podia poner ninguna."
+        );
+
+        mensajes.put("robar_n", args ->
+                "El jugador "+ ((Jugador) args[0]).getNombre()+" no ha robado ficha porque no quedan en el mazo."
+        );
+
+        mensajes.put("robar_colocada", args ->
+                "La ficha que has robado se podia colocar, y se ha colocado"
+        );
+
+        mensajes.put("numero_no_valido", args ->
+                "Introduzca un numero valido"
+        );
+
+        mensajes.put("normas_juego", args ->
+                "ESTAS SON LAS NORMAS DEL MODO DE JUEGO ELEJIDO: \n" +
+                        "Esta partida tendra "+((ConfiguracionNormas) args[0]).getNumJugadores() +"Jugadores. \n" +
+                        "Va a tener fichas del 0 al "+((ConfiguracionNormas) args[0]).getMaxNumCara()+". \n" +
+                        "Se van a repartir "+((ConfiguracionNormas) args[0]).getFichasPorJugador()+" fichas por jugador. \n" +
+                        "Para ganar, vas a necesitar acumular un total de "+((ConfiguracionNormas) args[0]).getPuntuacionGanadora()+" puntos, acumulados en todas las rondas. \n" +
+                        "Se van a hacer rondas, hasta que algun jugador o pareja llegue a ese total de puntos, va a empezar el jugador con el doble mas alto. \n" +
+                        "MUCHA SUERTE!!"
+        );
+
+
+
+
+
+
+
+
+
 
 
 
