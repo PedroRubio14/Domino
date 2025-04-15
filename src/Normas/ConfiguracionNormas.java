@@ -135,6 +135,26 @@ public class ConfiguracionNormas {
 
     }
 
+    public int iniciarJuego(Tablero t) {
+        int [] indexMax = {0,0};
+        int max =0;
+        for(int i = 0; i<jugadores.size();i++){
+            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
+                if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
+                    max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
+                    indexMax[0]= i;
+                    indexMax[1]= y;
+
+                }
+            }
+
+        }
+        t.colocarFicha(jugadores.get(indexMax[0]),indexMax[1],1);
+        Textos.imprimir("quien_empieza",jugadores.get(indexMax[0]));
+        Textos.mostrar_tablero(t);
+        return indexMax[0];
+    }
+
 
     public Mazo getMazo() {
         return mazo;
@@ -192,24 +212,9 @@ public class ConfiguracionNormas {
         return puntuacionGanadora;
     }
 
-
-    public int iniciarJuego(Tablero t) {
-        int [] indexMax = {0,0};
-        int max =0;
-        for(int i = 0; i<jugadores.size();i++){
-            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
-                if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
-                    max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
-                    indexMax[0]= i;
-                    indexMax[1]= y;
-
-                }
-            }
-
-        }
-        t.colocarFicha(jugadores.get(indexMax[0]),indexMax[1],1);
-        Textos.imprimir("quien_empieza",jugadores.get(indexMax[0]));
-        Textos.mostrar_tablero(t);
-        return indexMax[0];
+    public boolean isTableroIndividual() {
+        return tableroIndividual;
     }
+
+
 }

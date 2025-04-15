@@ -35,7 +35,7 @@ public class ConfPaises {
 
     public static ConfiguracionNormas colombia(){
         ConfiguracionNormas c = normasComunes();
-        c.puntuacionGanadora = 200;
+        c.puntuacionGanadora = 150;
         c.parejas = ConfiguracionNormas.jugarEnPareja_true();
         c.robar = false;
         c.maxRepeticionFicha = 6 +1;
@@ -80,7 +80,7 @@ public class ConfPaises {
         c.puntuacionGanadora = 200;
         c.parejas = ConfiguracionNormas.jugarEnPareja_true();
         c.robar = false;
-        c.maxRepeticionFicha = 9 +1;
+        c.maxRepeticionFicha = 6 +1;
         c.tableroIndividual = false;
         c.maxNumCara = 6;
         c.fichasPorJugador = 7;
