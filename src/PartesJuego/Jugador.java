@@ -1,7 +1,5 @@
 package PartesJuego;
-
-
-import Normas.ConfiguracionNormas;
+import Normas.DominoGeneral;
 import Otros.Textos;
 
 public class Jugador {
@@ -48,7 +46,7 @@ public class Jugador {
         this.pareja = pareja;
     }
 
-    public void colocar_ficha(Tablero t, ConfiguracionNormas dom){
+    public void colocar_ficha(Tablero t, DominoGeneral dom){
         boolean fichaColocada = false;
 
         while (!fichaColocada) {

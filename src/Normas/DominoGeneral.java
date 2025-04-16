@@ -1,4 +1,4 @@
-/*package Normas;
+package Normas;
 import Otros.Textos;
 import PartesJuego.*;
 
@@ -31,7 +31,25 @@ public abstract class DominoGeneral {
     }
 
 
-    public abstract int iniciarJuego(Tablero t);
+    public int iniciarJuego(Tablero t){
+        int [] indexMax = {0,0};
+        int max =0;
+        for(int i = 0; i<jugadores.size();i++){
+            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
+                if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
+                    max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
+                    indexMax[0]= i;
+                    indexMax[1]= y;
+
+                }
+            }
+
+        }
+        t.colocarFicha(jugadores.get(indexMax[0]),indexMax[1],1);
+        Textos.imprimir("quien_empieza",jugadores.get(indexMax[0]));
+        Textos.mostrar_tablero(t);
+        return indexMax[0];
+    }
 
     public void robar(Jugador j){
 
@@ -59,8 +77,17 @@ public abstract class DominoGeneral {
     }
 
     public static boolean jugarEnPareja(){
-        Textos.imprimir("parejas_ex");
-        return true;
+        Textos.imprimir("parejas_si_no");
+        String i = Textos.llegirString();
+        i= i.toLowerCase();
+        switch (i){
+            case "s":
+                return true;
+            case "n":
+                return false;
+        }
+        return false;
+
     }
 
 
@@ -188,5 +215,3 @@ public abstract class DominoGeneral {
         return puntuacionGanadora;
     }
 }
-
- */

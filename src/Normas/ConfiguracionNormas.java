@@ -1,4 +1,4 @@
-package Normas;
+/*package Normas;
 
 import Otros.Textos;
 import PartesJuego.Ficha;
@@ -218,3 +218,5 @@ public class ConfiguracionNormas {
 
 
 }
+
+ */

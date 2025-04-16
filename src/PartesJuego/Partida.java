@@ -6,35 +6,35 @@ import java.util.ArrayList;
 
 public class Partida {
 
-    private ConfiguracionNormas modoJuego;
+    private DominoGeneral modoJuego;
 
-    public static ConfiguracionNormas crearPartida(){
-        ConfiguracionNormas juego = null;
+    public static DominoGeneral crearPartida(){
+        DominoGeneral juego = null;
         while(true) {
             Textos.imprimir("Elegir_modo_juego");
             int modo_juego = Textos.llegirINT();
 
             switch (modo_juego) {
                 case 1:
-                    juego = ConfPaises.españa();
+                    juego = new España();
                     break;
                 case 2:
-                    juego = ConfPaises.mexico();
+                    juego =  new Mexico();
                     break;
                 case 3:
-                    juego = ConfPaises.chile();
+                    juego = new Chile();
                     break;
                 case 4:
-                    juego = ConfPaises.latin();
+                    juego = new Latin();
                     break;
                 case 5:
-                    juego = ConfPaises.ponce();
+                    juego = new Ponce();
                     break;
                 case 6:
-                    juego = ConfPaises.venezuela();
+                    juego = new Venezuela();
                     break;
                 case 7:
-                    juego = ConfPaises.colombia();
+                    juego =  new Colombia();
                     break;
 
             }
@@ -56,6 +56,11 @@ public class Partida {
 
 
     public void partida(){
+
+        if(modoJuego.isParejas()){
+            Textos.imprimir("parejas_ex");
+        }
+
         Tablero t = modoJuego.getTablero();
 
         ArrayList<Jugador> jugadores = modoJuego.getJugadores();
@@ -126,11 +131,11 @@ public class Partida {
 
     }
 
-    public ConfiguracionNormas getModoJuego() {
+    public DominoGeneral getModoJuego() {
         return modoJuego;
     }
 
-    public void setModoJuego(ConfiguracionNormas modoJuego) {
+    public void setModoJuego(DominoGeneral modoJuego) {
         this.modoJuego = modoJuego;
     }
 

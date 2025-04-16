@@ -1,11 +1,11 @@
-package Normas;
+/*package Normas;
 
 import PartesJuego.Mazo;
 import PartesJuego.Tablero;
 
 import java.util.ArrayList;
 
-public class ConfPaises {
+public class ConfPaises extends ConfiguracionNormas {
     public static ConfiguracionNormas españa(){
         ConfiguracionNormas c = normasComunes();
         c.puntuacionGanadora = 100;
@@ -113,3 +113,5 @@ public class ConfPaises {
         return c;
     }
 }
+
+ */
