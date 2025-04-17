@@ -1,8 +1,9 @@
 package PartesJuego;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Mazo {
+public class Mazo  implements Serializable {
     private ArrayList<Ficha> fichas;
 
     public Mazo() {

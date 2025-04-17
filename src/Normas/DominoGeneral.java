@@ -2,9 +2,10 @@ package Normas;
 import Otros.Textos;
 import PartesJuego.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class DominoGeneral {
+public abstract class DominoGeneral  implements Serializable {
     protected int numJugadores;
     protected Mazo mazo;
     protected ArrayList<Jugador> jugadores;
@@ -32,23 +33,24 @@ public abstract class DominoGeneral {
 
 
     public int iniciarJuego(Tablero t){
-        int [] indexMax = {0,0};
+        int indexJug = 0;
+        int indexFicha = 0;
         int max =0;
         for(int i = 0; i<jugadores.size();i++){
             for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
                 if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
                     max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
-                    indexMax[0]= i;
-                    indexMax[1]= y;
+                    indexJug= i;
+                    indexFicha= y;
 
                 }
             }
 
         }
-        t.colocarFicha(jugadores.get(indexMax[0]),indexMax[1],1);
-        Textos.imprimir("quien_empieza",jugadores.get(indexMax[0]));
+        t.colocarFicha(jugadores.get(indexJug),indexFicha,1);
+        Textos.imprimir("quien_empieza",jugadores.get(indexJug));
         Textos.mostrar_tablero(t);
-        return indexMax[0];
+        return indexJug;
     }
 
     public void robar(Jugador j){

@@ -1,14 +1,43 @@
 package PartesJuego;
 import Normas.*;
+import Otros.PartidaSerializar;
 import Otros.Textos;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Partida {
-
+public class Partida  implements Serializable {
     private DominoGeneral modoJuego;
+    private ArrayList<Jugador> jugadores;
+    private int turnoActual;
+    private boolean partidaFinalizada;
 
-    public static DominoGeneral crearPartida(){
+
+    public static void empezar_recuperar() throws IOException, ClassNotFoundException {
+        while (true) {
+            Textos.imprimir("empezar o recuperar");
+            int eleccion = Textos.llegirINT();
+            if (eleccion == 1 || eleccion == 2) {
+                switch (eleccion) {
+                    case 1:
+                        Partida p = new Partida();
+                        p.crearPartida();
+                        p.partida();
+                        break;
+                    case 2:
+                        Partida partidaCargada = PartidaSerializar.cargar("partida_test");
+                        partidaCargada.partida();
+                        break;
+                }
+                break;
+
+            }
+        }
+    }
+
+
+    public void crearPartida(){
         DominoGeneral juego = null;
         while(true) {
             Textos.imprimir("Elegir_modo_juego");
@@ -45,17 +74,7 @@ public class Partida {
             Textos.imprimir("numero_no_valido");
 
         }
-        return juego;
-    }
-
-    public Partida() {
-        this.modoJuego = crearPartida();
-
-    }
-
-
-
-    public void partida(){
+        setModoJuego(juego);
 
         if(modoJuego.isParejas()){
             Textos.imprimir("parejas_ex");
@@ -63,7 +82,7 @@ public class Partida {
 
         Tablero t = modoJuego.getTablero();
 
-        ArrayList<Jugador> jugadores = modoJuego.getJugadores();
+        jugadores = modoJuego.getJugadores();
 
         for(int i = 0;i<modoJuego.getNumJugadores();i++){
             Textos.imprimir("iniciar_usuario",(Integer) i);
@@ -79,28 +98,32 @@ public class Partida {
         }
 
 
-        boolean partidaFinalizada = false;
+    }
+
+    public Partida() {}
+
+
+
+    public void partida() throws IOException {
+
+        Tablero t = modoJuego.getTablero();
+         jugadores = modoJuego.getJugadores();
+
+        partidaFinalizada = false;
 
 
         while(!partidaFinalizada){
 
-            modoJuego.getMazo().crear_fichas(modoJuego.getMaxNumCara());
 
-            for(Jugador j: jugadores){
-                j.getMano().vaciarMano();
-                j.getMano().cogerFichas(modoJuego.getMazo());
-            }
-
-            int indexPrimero = modoJuego.iniciarJuego(t);
-            indexPrimero++;
 
             boolean rondaFinalizada = modoJuego.juegoTerminado();
 
             while(!rondaFinalizada){
-                for (int i = indexPrimero; i<jugadores.size();i++) {
+                for (int i = turnoActual; i<jugadores.size();i++) {
                     Textos.mostrar_mano(jugadores.get(i));
                     jugadores.get(i).colocar_ficha(t,modoJuego);
                     Textos.mostrar_tablero(t);
+                    PartidaSerializar.guardar(this, "partida_test");
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
 
                         if(modoJuego.isParejas()){
@@ -115,11 +138,22 @@ public class Partida {
                         break;
                     }
                 }
-                indexPrimero= 0;
+                turnoActual= 0;
 
 
             }
+
             partidaFinalizada = modoJuego.juegoTerminado();
+
+            modoJuego.getMazo().crear_fichas(modoJuego.getMaxNumCara());
+
+            for(Jugador j: jugadores){
+                j.getMano().vaciarMano();
+                j.getMano().cogerFichas(modoJuego.getMazo());
+            }
+
+            turnoActual = modoJuego.iniciarJuego(t);
+            turnoActual++;
 
         }
 

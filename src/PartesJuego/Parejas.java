@@ -1,6 +1,8 @@
 package PartesJuego;
 
-public class Parejas {
+import java.io.Serializable;
+
+public class Parejas  implements Serializable {
     private Jugador jugador1;
     private Jugador jugador2;
     private int puntos;

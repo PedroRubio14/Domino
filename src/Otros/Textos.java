@@ -145,6 +145,11 @@ public class Textos {
                         "MUCHA SUERTE!!"
         );
 
+        mensajes.put("empezar o recuperar", args ->
+                "Quieres empezar una nueva partida 1? \n" +
+                        "O quieres recuperar una partida existente :2 ?"
+        );
+
 
 
 

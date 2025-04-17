@@ -2,7 +2,9 @@ package PartesJuego;
 import Normas.DominoGeneral;
 import Otros.Textos;
 
-public class Jugador {
+import java.io.Serializable;
+
+public class Jugador  implements Serializable {
     private String nombre;
     private int puntuacion;
     private Mano mano;

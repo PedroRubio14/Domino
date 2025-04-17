@@ -3,11 +3,11 @@ package Otros;
 import Normas.*;
 import PartesJuego.*;
 
-public class Main {
-    public static void main(String[] args){
-        Partida p = new Partida();
+import java.io.IOException;
 
-    p.partida();
+public class Main {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        Partida.empezar_recuperar();
 
 
 

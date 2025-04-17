@@ -1,8 +1,9 @@
 package PartesJuego;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Tablero {
+public class Tablero  implements Serializable {
     private ArrayList<Ficha> fichas_mesa;
 
 

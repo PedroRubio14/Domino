@@ -1,6 +1,8 @@
 package PartesJuego;
 
-public class Ficha {
+import java.io.Serializable;
+
+public class Ficha implements Serializable {
     private int ladoIz;
     private int ladoDe;
     private boolean esDoble;

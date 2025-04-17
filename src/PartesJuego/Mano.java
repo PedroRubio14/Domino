@@ -1,9 +1,10 @@
 package PartesJuego;
 import Normas.DominoGeneral;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Mano {
+public class Mano  implements Serializable {
     private int fichaXjug;
     private ArrayList<Ficha> fichas_mano;
 
