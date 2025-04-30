@@ -27,6 +27,7 @@ public class Partida  implements Serializable {
                         break;
                     case 2:
                         Partida partidaCargada = PartidaSerializar.cargar("partida_test");
+                        Textos.mostrar_tablero(partidaCargada.getModoJuego().getTablero());
                         partidaCargada.partida();
                         break;
                 }
@@ -87,8 +88,15 @@ public class Partida  implements Serializable {
         for(int i = 0;i<modoJuego.getNumJugadores();i++){
             Textos.imprimir("iniciar_usuario",(Integer) i);
             String nombre = Textos.llegirString();
-            jugadores.add( new Jugador(nombre, this));
+            Jugador j= new Jugador(nombre, this);
+            jugadores.add(j);
         }
+
+        modoJuego.getMazo().crear_fichas(modoJuego.getMaxNumCara());
+        for(Jugador j : jugadores){
+            j.getMano().cogerFichas(modoJuego.getMazo());
+        }
+
         modoJuego.setJugadores(jugadores);
 
         if(modoJuego.isParejas()){
@@ -96,6 +104,9 @@ public class Partida  implements Serializable {
             Parejas p2 = new Parejas(jugadores.get(1),jugadores.get(3));
 
         }
+
+        turnoActual = modoJuego.iniciarJuego(t);
+        turnoActual++;
 
 
     }
