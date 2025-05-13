@@ -17,6 +17,9 @@ public class PartidaSerializar {
     public static Partida cargar(String nomFitxer) throws IOException, ClassNotFoundException {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(nomFitxer + ".ser"))) {
             return (Partida) ois.readObject();
+        } catch (FileNotFoundException e){
+            Textos.imprimir("Error Recuperar");
         }
+        return null;
     }
 }

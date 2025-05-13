@@ -1,6 +1,4 @@
 package Otros;
-
-import Normas.*;
 import PartesJuego.*;
 
 import java.io.IOException;

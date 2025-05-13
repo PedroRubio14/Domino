@@ -35,8 +35,12 @@ public class Textos {
         System.out.println();
         System.out.println(j.getNombre());
 
+        int i = 0;
         for (Ficha ficha : f) {
-            System.out.println(ficha.toString());
+            System.out.print(i+"- ");
+            System.out.print(ficha.toString());
+            System.out.println();
+            i++;
 
 
         }
@@ -149,6 +153,12 @@ public class Textos {
                 "Quieres empezar una nueva partida 1? \n" +
                         "O quieres recuperar una partida existente :2 ?"
         );
+
+        mensajes.put("Error Recuperar", args ->
+                "Error al recuperar la partida: no existe ninguna partida guardada."
+        );
+
+
 
 
 
