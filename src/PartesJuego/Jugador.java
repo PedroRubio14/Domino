@@ -1,5 +1,6 @@
 package PartesJuego;
 import Normas.DominoGeneral;
+import Normas.Robar;
 import Otros.Textos;
 
 import java.io.Serializable;
@@ -9,6 +10,10 @@ public class Jugador  implements Serializable {
     private int puntuacion;
     private Mano mano;
     private Parejas pareja;
+
+    final int  izuierda = 1;
+    final int derecha = 2;
+    final int noColocar = -1;
 
     public Jugador(String nombre, Partida p) {
         this.nombre = nombre;
@@ -49,6 +54,8 @@ public class Jugador  implements Serializable {
     }
 
     public void colocar_ficha(Tablero t, DominoGeneral dom){
+
+
         boolean fichaColocada = false;
 
         while (!fichaColocada) {
@@ -57,7 +64,7 @@ public class Jugador  implements Serializable {
             if (nF < this.getMano().getFichas_mano().size() && nF >= 0) {
                 Textos.imprimir("elegir_donde_colocar");
                 int nP = Textos.llegirINT();
-                if(nP == 1 || nP == 2) {
+                if(nP == izuierda || nP == derecha) {
                     if (t.sePotColocar(this.getMano().getFichas_mano().get(nF), nP)) {
                         t.colocarFicha(this, nF, nP);
                         fichaColocada = true;
@@ -65,9 +72,9 @@ public class Jugador  implements Serializable {
                 }
 
             }
-            if(nF == -1){
-                if(dom.isRobar()){
-                    dom.robar(this);
+            if(nF == noColocar){
+                if(dom instanceof Robar){
+                    ((Robar) dom).robar(this, dom);
                 }else {
                     Textos.imprimir("pasar_turno",this);
                 }

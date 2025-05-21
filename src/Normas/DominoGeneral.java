@@ -17,7 +17,7 @@ public abstract class DominoGeneral  implements Serializable {
     protected boolean robar;
     protected int maxRepeticionFicha;
 
-    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas, boolean robar) {
+    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas) {
         this.numJugadores = numJugadores;
         this.mazo = mazo;
         this.jugadores = jugadores;
@@ -26,7 +26,6 @@ public abstract class DominoGeneral  implements Serializable {
         this.fichasPorJugador = fichasPorJugador;
         this.puntuacionGanadora = puntuacionGanadora;
         this.parejas = parejas;
-        this.robar = robar;
         this.maxRepeticionFicha = maxNumCara+1;
 
     }
@@ -51,31 +50,6 @@ public abstract class DominoGeneral  implements Serializable {
         Textos.imprimir("quien_empieza",jugadores.get(indexJug));
         Textos.mostrar_tablero(t);
         return indexJug;
-    }
-
-    public void robar(Jugador j){
-
-
-        ArrayList<Ficha> fichasMazo = mazo.getFichas();
-
-        if(fichasMazo.isEmpty()){
-            Textos.imprimir("robar_n",j);
-        }else {
-            int n = (int) (Math.random() * fichasMazo.size());
-            Ficha movida = fichasMazo.remove(n);
-            j.getMano().getFichas_mano().add(movida);
-            Textos.imprimir("robar_s",j);
-
-            int lado = tablero.sePotColocar(movida, 1) ? 1 : (tablero.sePotColocar(movida, 2) ? 2 : 0);
-
-            if (lado != 0) {
-                tablero.colocarFicha(j, j.getMano().getFichas_mano().size() - 1, lado);
-                Textos.imprimir("robada_colocada");
-            }
-
-        }
-
-
     }
 
     public static boolean jugarEnPareja(){

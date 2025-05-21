@@ -7,8 +7,8 @@ import PartesJuego.Tablero;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Ponce extends DominoGeneral  implements Serializable {
+public class Ponce extends DominoGeneral  implements Serializable, Robar {
     public Ponce() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 9, 10, 200, true, true);
+        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 9, 10, 200, true);
     }
 }

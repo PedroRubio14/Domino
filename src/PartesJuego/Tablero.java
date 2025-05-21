@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class Tablero  implements Serializable {
     private ArrayList<Ficha> fichas_mesa;
+    final int  izuierda = 1;
+    final int derecha = 2;
 
 
 
@@ -35,25 +37,27 @@ public class Tablero  implements Serializable {
 
 
     public boolean sePotColocar(Ficha f, int pos){
+
+
        int lon = this.fichas_mesa.size();
 
         if(lon == 0){
             return true;
         }
 
-        if(pos == 1 && this.fichas_mesa.get(0).getLadoIz() == f.getLadoDe()){
+        if(pos == izuierda && this.fichas_mesa.get(0).getLadoIz() == f.getLadoDe()){
             return true;
         }
-        if(pos == 1 && this.fichas_mesa.get(0).getLadoIz() == f.getLadoIz()){
+        if(pos == izuierda && this.fichas_mesa.get(0).getLadoIz() == f.getLadoIz()){
             f.darLaVuelta();
             return true;
         }
 
 
-        if(pos == 2 && this.fichas_mesa.get(lon-1).getLadoDe() == f.getLadoIz()){
+        if(pos == derecha && this.fichas_mesa.get(lon-1).getLadoDe() == f.getLadoIz()){
             return true;
         }
-        if(pos == 2 && this.fichas_mesa.get(lon-1).getLadoDe() == f.getLadoDe()){
+        if(pos == derecha && this.fichas_mesa.get(lon-1).getLadoDe() == f.getLadoDe()){
             f.darLaVuelta();
             return true;
         }
@@ -65,9 +69,9 @@ public class Tablero  implements Serializable {
     public void colocarFicha(Jugador j, int indexFicha, int posicion){
         Ficha f = j.getMano().getFichas_mano().remove(indexFicha);
 
-        if(posicion == 1){
+        if(posicion == izuierda){
             añadirPrincipio(f);
-        } else if ( posicion == 2){
+        } else if ( posicion == derecha){
             añadirFinal(f);
         }
 

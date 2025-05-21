@@ -13,21 +13,24 @@ public class Partida  implements Serializable {
     private int turnoActual;
     private boolean partidaFinalizada;
 
+    final static int nuevaPartida = 1;
+    final static int recuperarPartida = 2;
+
 
     public static void empezar_recuperar() throws IOException, ClassNotFoundException {
         boolean empezar = true;
         while (empezar) {
             Textos.imprimir("empezar o recuperar");
             int eleccion = Textos.llegirINT();
-            if (eleccion == 1 || eleccion == 2) {
+            if (eleccion == nuevaPartida || eleccion == recuperarPartida) {
                 switch (eleccion) {
-                    case 1:
+                    case nuevaPartida:
                         Partida p = new Partida();
                         p.crearPartida();
                         p.partida();
                         empezar = false;
                         break;
-                    case 2:
+                    case recuperarPartida:
                         Partida partidaCargada = PartidaSerializar.cargar("partida_test");
                         if(partidaCargada != null){
                             Textos.mostrar_tablero(partidaCargada.getModoJuego().getTablero());

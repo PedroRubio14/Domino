@@ -7,8 +7,8 @@ import PartesJuego.Tablero;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Mexico extends DominoGeneral  implements Serializable {
+public class Mexico extends DominoGeneral  implements Serializable, Robar {
     public Mexico() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 9, 7, 200, false, true);
+        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 9, 7, 200, false);
     }
 }
