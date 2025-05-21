@@ -14,14 +14,13 @@ public abstract class DominoGeneral  implements Serializable {
     protected int fichasPorJugador;
     protected int puntuacionGanadora;
     protected boolean parejas;
-    protected boolean robar;
     protected int maxRepeticionFicha;
 
-    public DominoGeneral(int numJugadores, Mazo mazo, ArrayList<Jugador> jugadores, Tablero tablero, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas) {
+    public DominoGeneral(int numJugadores, int maxNumCara, int fichasPorJugador, int puntuacionGanadora, boolean parejas) {
         this.numJugadores = numJugadores;
-        this.mazo = mazo;
-        this.jugadores = jugadores;
-        this.tablero = tablero;
+        this.mazo = new Mazo();
+        this.jugadores = new ArrayList<>();
+        this.tablero = new Tablero();
         this.maxNumCara = maxNumCara;
         this.fichasPorJugador = fichasPorJugador;
         this.puntuacionGanadora = puntuacionGanadora;
@@ -181,10 +180,6 @@ public abstract class DominoGeneral  implements Serializable {
 
     public int getMaxRepeticionFicha() {
         return maxRepeticionFicha;
-    }
-
-    public boolean isRobar() {
-        return robar;
     }
 
     public int getPuntuacionGanadora() {

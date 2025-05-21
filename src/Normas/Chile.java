@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 public class Chile extends DominoGeneral  implements Serializable, Robar {
     public Chile() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 6, 5, 100, jugarEnPareja());
+        super(4, 6, 5, 100, jugarEnPareja());
     }
 }

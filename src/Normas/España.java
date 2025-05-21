@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class España extends DominoGeneral  implements Serializable {
     public España() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 6, 7, 100, jugarEnPareja());
+        super(4, 6, 7, 100, jugarEnPareja());
     }
 
 

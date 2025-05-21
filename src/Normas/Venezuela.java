@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 public class Venezuela extends DominoGeneral  implements Serializable {
     public Venezuela() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 6, 7, 100, true);
+        super(4, 6, 7, 100, true);
     }
 }

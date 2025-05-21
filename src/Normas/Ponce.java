@@ -9,6 +9,6 @@ import java.util.ArrayList;
 
 public class Ponce extends DominoGeneral  implements Serializable, Robar {
     public Ponce() {
-        super(4, new Mazo(), new ArrayList<>(), new Tablero(), 9, 10, 200, true);
+        super(4, 9, 10, 200, true);
     }
 }
