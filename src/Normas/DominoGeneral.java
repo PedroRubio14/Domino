@@ -65,10 +65,9 @@ public abstract class DominoGeneral  implements Serializable {
 
     }
 
-
     public boolean victoriaRonda(Jugador j){
         if (j.getMano().getFichas_mano().isEmpty()) {
-            contarPuntos(j);
+            this.contarPuntos(j);
             return true;
         }
 
@@ -81,13 +80,14 @@ public abstract class DominoGeneral  implements Serializable {
                     return false;
                 }
             }
-            contarPuntos(j);
+            this.contarPuntos(j);
             return true;
         }
 
         return false;
 
     }
+
     public boolean juegoTerminado() {
         for(Jugador j: jugadores){
             if(j.getPuntuacion()>= puntuacionGanadora) {

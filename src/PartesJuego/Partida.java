@@ -141,7 +141,7 @@ public class Partida  implements Serializable {
             while(!rondaFinalizada){
                 for (int i = turnoActual; i<jugadores.size();i++) {
                     Textos.mostrar_mano(jugadores.get(i));
-                    jugadores.get(i).colocar_ficha(t,modoJuego);
+                    jugadores.get(i).colocar_ficha(t,modoJuego,this);
                     Textos.mostrar_tablero(t);
                     PartidaSerializar.guardar(this, "partida_test");
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
@@ -193,5 +193,15 @@ public class Partida  implements Serializable {
         this.modoJuego = modoJuego;
     }
 
+    public int getTurnoActual() {
+        return turnoActual;
+    }
 
+    public void setTurnoActual(int turnoActual) {
+        this.turnoActual = turnoActual;
+    }
+
+    public ArrayList<Jugador> getJugadores() {
+        return jugadores;
+    }
 }

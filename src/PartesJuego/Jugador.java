@@ -1,5 +1,6 @@
 package PartesJuego;
 import Normas.DominoGeneral;
+import Normas.Ponce;
 import Normas.Robar;
 import Otros.Textos;
 
@@ -53,7 +54,7 @@ public class Jugador  implements Serializable {
         this.pareja = pareja;
     }
 
-    public void colocar_ficha(Tablero t, DominoGeneral dom){
+    public void colocar_ficha(Tablero t, DominoGeneral dom, Partida partida){
 
 
         boolean fichaColocada = false;
@@ -76,7 +77,13 @@ public class Jugador  implements Serializable {
                 if(dom instanceof Robar){
                     ((Robar) dom).robar(this, dom);
                 }else {
+
                     Textos.imprimir("pasar_turno",this);
+                }
+
+                if(dom instanceof Ponce){
+                    ((Ponce) dom).pasarTurnoPonce(partida);
+
                 }
 
                 break;
