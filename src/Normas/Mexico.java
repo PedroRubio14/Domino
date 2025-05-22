@@ -8,8 +8,14 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Mexico extends DominoGeneral  implements Serializable, Robar {
+
+    static int numJugadores = 4;
+    static int maxNumCara = 9;
+    static int fichasPorJugador = 7;
+    static int puntuacionGanadora= 200;
+
     public Mexico() {
-        super(4, 9, 7, 200, false);
+        super(numJugadores, maxNumCara,fichasPorJugador ,puntuacionGanadora, false);
     }
 
 

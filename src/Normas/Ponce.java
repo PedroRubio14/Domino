@@ -9,11 +9,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Ponce extends DominoGeneral  implements Serializable, Robar {
+
+    static int numJugadores = 4;
+    static int maxNumCara = 9;
+    static int fichasPorJugador = 10;
+    static int puntuacionGanadora= 200;
+    static final int puntosPorBloquearAlSiguiente = 5;
+
     public Ponce() {
-        super(4, 9, 10, 200, true);
+        super(numJugadores, maxNumCara, fichasPorJugador, puntuacionGanadora, true);
     }
 
-    private final int puntosPorBloquearAlSiguiente = 5;
+
 
 
     public void pasarTurnoPonce(Partida p){
