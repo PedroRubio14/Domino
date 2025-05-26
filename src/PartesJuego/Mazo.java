@@ -4,29 +4,29 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Mazo  implements Serializable {
-    private ArrayList<Ficha> fichas;
+    private GrupoFichas fichas;
 
     public Mazo() {
-        this.fichas = new ArrayList<>();
+        this.fichas = new GrupoFichas();
 
     }
 
-    public ArrayList<Ficha> getFichas() {
+    public GrupoFichas getFichas() {
         return fichas;
     }
 
-    public void setFichas(ArrayList<Ficha> fichas) {
+    public void setFichas(GrupoFichas fichas) {
         this.fichas = fichas;
     }
 
 
     public void crear_fichas(int n){
-        ArrayList<Ficha> f = new ArrayList<>();
+        GrupoFichas f = new GrupoFichas();
         int num = n;
 
         for(int i = 0; i <= num; i++){
             for(int y = i; y <= num; y++){
-                f.add(new Ficha(i,y));
+                f.agregarFicha(new Ficha(i,y));
             }
         }
 

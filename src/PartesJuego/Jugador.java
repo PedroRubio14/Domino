@@ -62,11 +62,11 @@ public class Jugador  implements Serializable {
         while (!fichaColocada) {
             Textos.imprimir("ficha_para_colocar");
             int nF = Textos.llegirINT();
-            if (nF < this.getMano().getFichas_mano().size() && nF >= 0) {
+            if (nF < this.getMano().getFichas_mano().cantidadFichas() && nF >= 0) {
                 Textos.imprimir("elegir_donde_colocar");
                 int nP = Textos.llegirINT();
                 if(nP == izuierda || nP == derecha) {
-                    if (t.sePotColocar(this.getMano().getFichas_mano().get(nF), nP)) {
+                    if (t.sePotColocar(this.getMano().getFichas_mano().obtenerFicha(nF), nP)) {
                         t.colocarFicha(this, nF, nP);
                         fichaColocada = true;
                     }
@@ -101,7 +101,7 @@ public class Jugador  implements Serializable {
 
     public int getPuntuacionEnMano() {
         int total=0;
-        for(Ficha f: getMano().getFichas_mano()){
+        for(Ficha f: getMano().getFichas_mano().obtenerTodasFichas()){
             total += f.getLadoDe();
             total += f.getLadoIz();
 

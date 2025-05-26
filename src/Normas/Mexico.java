@@ -21,7 +21,7 @@ public class Mexico extends DominoGeneral  implements Serializable, Robar {
 
     @Override
     public boolean victoriaRonda(Jugador j){
-        if (j.getMano().getFichas_mano().isEmpty()) {
+        if (j.getMano().getFichas_mano().estaVacio()) {
             contarPuntos(j);
             return true;
         }

@@ -12,7 +12,7 @@ public interface Robar {
     default void robar(Jugador j,DominoGeneral dom){
 
 
-        ArrayList<Ficha> fichasMazo = dom.getMazo().getFichas();
+        ArrayList<Ficha> fichasMazo = dom.getMazo().getFichas().obtenerTodasFichas();
 
         Tablero tablero = dom.getTablero();
 
@@ -21,13 +21,13 @@ public interface Robar {
         }else {
             int n = (int) (Math.random() * fichasMazo.size());
             Ficha movida = fichasMazo.remove(n);
-            j.getMano().getFichas_mano().add(movida);
+            j.getMano().getFichas_mano().agregarFicha(movida);
             Textos.imprimir("robar_s",j);
 
             int lado = tablero.sePotColocar(movida, 1) ? 1 : (tablero.sePotColocar(movida, 2) ? 2 : 0);
 
             if (lado != 0) {
-                tablero.colocarFicha(j, j.getMano().getFichas_mano().size() - 1, lado);
+                tablero.colocarFicha(j, j.getMano().getFichas_mano().cantidadFichas() - 1, lado);
                 Textos.imprimir("robada_colocada");
             }
 

@@ -35,9 +35,9 @@ public abstract class DominoGeneral  implements Serializable {
         int indexFicha = 0;
         int max =0;
         for(int i = 0; i<jugadores.size();i++){
-            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().size(); y++){
-                if(jugadores.get(i).getMano().getFichas_mano().get(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe()>max){
-                    max = jugadores.get(i).getMano().getFichas_mano().get(y).getLadoDe();
+            for(int y = 0; y<jugadores.get(i).getMano().getFichas_mano().cantidadFichas(); y++){
+                if(jugadores.get(i).getMano().getFichas_mano().obtenerFicha(y).isEsDoble() && jugadores.get(i).getMano().getFichas_mano().obtenerFicha(y).getLadoDe()>max){
+                    max = jugadores.get(i).getMano().getFichas_mano().obtenerFicha(y).getLadoDe();
                     indexJug= i;
                     indexFicha= y;
 
@@ -66,7 +66,7 @@ public abstract class DominoGeneral  implements Serializable {
     }
 
     public boolean victoriaRonda(Jugador j){
-        if (j.getMano().getFichas_mano().isEmpty()) {
+        if (j.getMano().getFichas_mano().estaVacio()) {
             this.contarPuntos(j);
             return true;
         }
@@ -110,7 +110,7 @@ public abstract class DominoGeneral  implements Serializable {
 
             for (Jugador jug : jugadores) {
                 if (jug != j1 && jug != j2) {
-                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                    for (Ficha f : jug.getMano().getFichas_mano().obtenerTodasFichas()) {
                         puntos += f.getLadoDe() + f.getLadoIz();
                     }
                 }
@@ -123,7 +123,7 @@ public abstract class DominoGeneral  implements Serializable {
 
             for (Jugador jug : jugadores) {
                 if (jug != j) {
-                    for (Ficha f : jug.getMano().getFichas_mano()) {
+                    for (Ficha f : jug.getMano().getFichas_mano().obtenerTodasFichas()) {
                         puntos += f.getLadoDe() + f.getLadoIz();
                     }
                 }

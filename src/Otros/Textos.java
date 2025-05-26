@@ -31,7 +31,7 @@ public class Textos {
 
 
     public static void mostrar_mano(Jugador j){
-        ArrayList<Ficha> f = j.getMano().getFichas_mano();
+        ArrayList<Ficha> f = j.getMano().getFichas_mano().obtenerTodasFichas();
         System.out.println();
         System.out.println(j.getNombre());
 
@@ -48,7 +48,7 @@ public class Textos {
     }
 
     public static void mostrar_tablero(Tablero t){
-        ArrayList<Ficha> f = t.getFichas_mesa();
+        ArrayList<Ficha> f = t.getFichas_mesa().obtenerTodasFichas();
 
         for (Ficha ficha : f) {
             System.out.print(ficha.toString());
