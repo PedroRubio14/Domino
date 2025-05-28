@@ -39,13 +39,6 @@ public class Partida  implements Serializable {
                     PartidaSerializar.guardar(this, "partida_test");
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
 
-                        if(modoJuego.isParejas()){
-                            Textos.imprimir("ganador_ronda_parejas", jugadores.get(i).getPareja());
-
-                        } else {
-                            Textos.imprimir("ganador_ronda", jugadores.get(i));
-                        }
-
                         rondaFinalizada= true;
                         t.borrarTablero();
                         break;

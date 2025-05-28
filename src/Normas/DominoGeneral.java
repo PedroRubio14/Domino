@@ -67,6 +67,9 @@ public abstract class DominoGeneral  implements Serializable {
 
     public boolean victoriaRonda(Jugador j){
         if (j.getMano().getFichas_mano().estaVacio()) {
+
+            Textos.ganadorRonda(j,this);
+
             this.contarPuntos(j);
             return true;
         }
@@ -80,6 +83,9 @@ public abstract class DominoGeneral  implements Serializable {
                     return false;
                 }
             }
+
+            Textos.ganadorRonda(j,this);
+
             this.contarPuntos(j);
             return true;
         }
@@ -131,6 +137,17 @@ public abstract class DominoGeneral  implements Serializable {
             j.setPuntuacion(puntos);
         }
 
+    }
+
+    @Override
+    public String toString(){
+        return "ESTAS SON LAS NORMAS DEL MODO DE JUEGO ELEJIDO: \n" +
+                "Esta partida tendra "+numJugadores +" Jugadores. \n" +
+                "Va a tener fichas del 0 al "+ maxNumCara +". \n" +
+                "Se van a repartir "+fichasPorJugador+" fichas por jugador. \n" +
+                "Para ganar, vas a necesitar acumular un total de "+puntuacionGanadora+" puntos, acumulados en todas las rondas. \n" +
+                "Se van a hacer rondas, hasta que algun jugador o pareja llegue a ese total de puntos, va a empezar el jugador con el doble mas alto. \n" +
+                "MUCHA SUERTE!!";
     }
 
 

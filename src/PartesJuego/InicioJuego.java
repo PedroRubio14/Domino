@@ -72,7 +72,7 @@ public class InicioJuego {
 
             }
             if(modo_juego>0 && modo_juego<7){
-                Textos.imprimir("normas_juego",juego);
+                Textos.imprimirTexto(juego.toString());
                 break;
             }
             Textos.imprimir("numero_no_valido");

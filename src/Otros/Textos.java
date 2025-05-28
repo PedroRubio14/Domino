@@ -57,6 +57,16 @@ public class Textos {
         }
     }
 
+
+    public static void ganadorRonda(Jugador j,DominoGeneral dom){
+        if(dom.isParejas()){
+            Textos.imprimir("ganador_ronda_parejas", j.getPareja());
+
+        } else {
+            Textos.imprimir("ganador_ronda", j);
+        }
+    }
+
     private static final Map<String, Function<Object[], String>> mensajes = new HashMap<>();
 
     static {
@@ -138,17 +148,6 @@ public class Textos {
         mensajes.put("numero_no_valido", args ->
                 "Introduzca un numero valido"
         );
-
-        mensajes.put("normas_juego", args ->
-                "ESTAS SON LAS NORMAS DEL MODO DE JUEGO ELEJIDO: \n" +
-                        "Esta partida tendra "+((DominoGeneral) args[0]).getNumJugadores() +"Jugadores. \n" +
-                        "Va a tener fichas del 0 al "+((DominoGeneral) args[0]).getMaxNumCara()+". \n" +
-                        "Se van a repartir "+((DominoGeneral) args[0]).getFichasPorJugador()+" fichas por jugador. \n" +
-                        "Para ganar, vas a necesitar acumular un total de "+((DominoGeneral) args[0]).getPuntuacionGanadora()+" puntos, acumulados en todas las rondas. \n" +
-                        "Se van a hacer rondas, hasta que algun jugador o pareja llegue a ese total de puntos, va a empezar el jugador con el doble mas alto. \n" +
-                        "MUCHA SUERTE!!"
-        );
-
         mensajes.put("empezar o recuperar", args ->
                 "Quieres empezar una nueva partida 1? \n" +
                         "O quieres recuperar una partida existente :2 ?"
@@ -181,6 +180,11 @@ public class Textos {
         } else {
             mensajes.get("mensaje_no_definido").apply(new Object[]{clave});
         }
+    }
+
+    public static void imprimirTexto(String s){
+        System.out.println();
+        System.out.println(s);
     }
 
 
