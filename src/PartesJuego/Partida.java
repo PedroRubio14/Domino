@@ -12,8 +12,11 @@ public class Partida  implements Serializable {
     private ArrayList<Jugador> jugadores;
     private int turnoActual;
     private boolean partidaFinalizada;
+    private final String id;
 
-    public Partida() {}
+    public Partida() {
+        this.id = PartidaSerializar.obtenerNuevoIDLibre();
+    }
 
 
 
@@ -36,7 +39,7 @@ public class Partida  implements Serializable {
                     Textos.mostrar_mano(jugadores.get(i));
                     jugadores.get(i).colocar_ficha(t,modoJuego,this);
                     Textos.mostrar_tablero(t);
-                    PartidaSerializar.guardar(this, "partida_test");
+                    PartidaSerializar.guardar(this);
                     if(modoJuego.victoriaRonda(jugadores.get(i))){
 
                         rondaFinalizada= true;
@@ -93,6 +96,10 @@ public class Partida  implements Serializable {
 
     public void setJugadores(ArrayList<Jugador> jugadores) {
         this.jugadores = jugadores;
+    }
+
+    public String getId(){
+        return  id;
     }
 
 

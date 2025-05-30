@@ -158,12 +158,22 @@ public class Textos {
         );
 
 
+        mensajes.put("ElegirPartida", args ->
+                "Introducir ID de la partida que desea recuperar: "
+        );
 
-
-
-
-
-
+        mensajes.put("mostrar_partidas_guardadas", args -> {
+            List<String> ids = (List<String>) args[0];
+            if (ids.isEmpty()) {
+                 return "No hay partidas guardadas.";
+            } else {
+                StringBuilder sb = new StringBuilder("Partidas disponibles para recuperar:\n");
+                for (String id : ids) {
+                    sb.append("ID: ").append(id).append("\n");
+                }
+                return sb.toString();
+            }
+        });
 
 
 

@@ -4,13 +4,16 @@ import Normas.*;
 import Otros.PartidaSerializar;
 import Otros.Textos;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class InicioJuego {
 
     final static int nuevaPartida = 1;
     final static int recuperarPartida = 2;
+
 
     public static void empezar_recuperar() throws IOException, ClassNotFoundException {
         boolean empezar = true;
@@ -25,21 +28,43 @@ public class InicioJuego {
                         p.juego();
                         empezar = false;
                         break;
+
                     case recuperarPartida:
-                        Partida partidaCargada = PartidaSerializar.cargar("partida_test");
-                        if(partidaCargada != null){
+                        mostrarPartidasGuardadas();
+                        Textos.imprimir("ElegirPartida");
+                        String id = Textos.llegirString();
+                        Partida partidaCargada = PartidaSerializar.cargar(id);
+                        if (partidaCargada != null) {
                             Textos.mostrar_tablero(partidaCargada.getModoJuego().getTablero());
                             partidaCargada.juego();
                             empezar = false;
+                        } else {
+                            Textos.imprimir("Error Recuperar");
                         }
-
                         break;
                 }
-
-
             }
         }
     }
+
+    private static void mostrarPartidasGuardadas() {
+        File carpeta = new File(".");
+        File[] archivos = carpeta.listFiles((dir, name) -> name.startsWith("partida_") && name.endsWith(".ser"));
+
+        List<String> ids = new ArrayList<>();
+        if (archivos != null) {
+            for (File archivo : archivos) {
+                String nombre = archivo.getName();
+                String id = nombre.substring("partida_".length(), nombre.length() - ".ser".length());
+                ids.add(id);
+            }
+        }
+
+        Textos.imprimir("mostrar_partidas_guardadas", ids);
+    }
+
+
+
 
     public static void crearPartida(Partida p){
         DominoGeneral juego = null;
@@ -71,7 +96,7 @@ public class InicioJuego {
                     break;
 
             }
-            if(modo_juego>0 && modo_juego<7){
+            if(modo_juego>0 && modo_juego<8){
                 Textos.imprimirTexto(juego.toString());
                 break;
             }
