@@ -1,11 +1,6 @@
 package Normas;
 
-import PartesJuego.Jugador;
-import PartesJuego.Mazo;
-import PartesJuego.Tablero;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class Latin extends DominoGeneral  implements Serializable {
     static int numJugadores = 4;

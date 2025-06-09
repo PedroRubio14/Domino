@@ -1,12 +1,6 @@
 package Normas;
 
-import Otros.Textos;
-import PartesJuego.Jugador;
-import PartesJuego.Mazo;
-import PartesJuego.Tablero;
-
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class España extends DominoGeneral  implements Serializable {
     static int numJugadores = 4;
