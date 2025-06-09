@@ -73,6 +73,36 @@ public class Chile extends DominoGeneral  implements Serializable, Robar {
     }
 
     @Override
+    public boolean victoriaRonda(Jugador j){
+        if (j.getMano().getFichas_mano().estaVacio()) {
+
+            Textos.ganadorRonda(j,this);
+
+            this.contarPuntos(j);
+            return true;
+        }
+
+        if (this.getTablero().tableroBloqueado(this.getMaxRepeticionFicha())) {
+            int puntosJugador = j.getPuntuacionEnMano() + j.getPuntuacion();
+
+            for (Jugador otro : jugadores) {
+                if (otro == j) continue;
+                if ((otro.getPuntuacionEnMano()+otro.getPuntuacion()) < puntosJugador) {
+                    return false;
+                }
+            }
+
+            Textos.ganadorRonda(j,this);
+
+            this.contarPuntos(j);
+            return true;
+        }
+
+        return false;
+
+    }
+
+    @Override
     public String toString(){
         return "ESTAS SON LAS NORMAS DEL MODO DE JUEGO ELEJIDO: \n" +
                 "Esta partida tendra "+numJugadores +" Jugadores. \n" +

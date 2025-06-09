@@ -1,5 +1,6 @@
 package PartesJuego;
 import Normas.DominoGeneral;
+import Normas.Latin;
 import Normas.Ponce;
 import Normas.Robar;
 import Otros.Textos;
@@ -83,7 +84,10 @@ public class Jugador  implements Serializable {
 
                 if(dom instanceof Ponce){
                     ((Ponce) dom).pasarTurnoPonce(partida);
+                }
 
+                if(dom instanceof Latin){
+                    ((Latin) dom).pasarTurnoLatino(partida);
                 }
 
                 break;

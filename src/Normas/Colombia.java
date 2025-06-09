@@ -15,4 +15,6 @@ public class Colombia extends DominoGeneral  implements Serializable {
     public Colombia() {
         super(numJugadores, maxNumCara, fichasPorJugador, puntuacionGanadora, true);
     }
+
+
 }
