@@ -1,8 +1,5 @@
 package PartesJuego;
-import Normas.DominoGeneral;
-import Normas.Latin;
-import Normas.Ponce;
-import Normas.Robar;
+import Normas.*;
 import Otros.Textos;
 
 import java.io.Serializable;
@@ -90,7 +87,17 @@ public class Jugador  implements Serializable {
                     ((Latin) dom).pasarTurnoLatino(partida);
                 }
 
-                break;
+                if(dom instanceof Colombia){
+                    if(((Colombia) dom).puedePasar(this)){
+                        break;
+                    } else{
+                        Textos.imprimir("noPasar");
+                    }
+                }else{
+                    break;
+                }
+
+
             }
             if(!fichaColocada){
                 Textos.imprimir("Error_colocar");

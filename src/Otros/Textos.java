@@ -114,7 +114,7 @@ public class Textos {
         );
 
         mensajes.put("Error_colocar", args ->
-                "Ha ocurrido un error al colocar la ficha, intentalo de nuevo. "
+                "Intentalo de nuevo. "
         );
 
         mensajes.put("pasar_turno", args ->
@@ -160,6 +160,10 @@ public class Textos {
 
         mensajes.put("ElegirPartida", args ->
                 "Introducir ID de la partida que desea recuperar: "
+        );
+
+        mensajes.put("noPasar", args ->
+                "En este modo de juego, es obligatorio colocar una ficha si puedes, no puedes pasar de turno"
         );
 
         mensajes.put("mostrar_partidas_guardadas", args -> {

@@ -1,8 +1,6 @@
 package Normas;
 
-import PartesJuego.Jugador;
-import PartesJuego.Mazo;
-import PartesJuego.Tablero;
+import PartesJuego.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,6 +12,20 @@ public class Colombia extends DominoGeneral  implements Serializable {
     static int puntuacionGanadora= 100;
     public Colombia() {
         super(numJugadores, maxNumCara, fichasPorJugador, puntuacionGanadora, true);
+    }
+
+    public boolean puedePasar(Jugador j){
+        GrupoFichas manoJugador = j.getMano().getFichas_mano();
+
+        for(int i = 0; i < manoJugador.cantidadFichas(); i++){
+            if((this.tablero.sePotColocar(manoJugador.obtenerFicha(i),1))
+                    || (this.tablero.sePotColocar(manoJugador.obtenerFicha(i),2))){
+
+                return false;
+
+            }
+        }
+        return true;
     }
 
 
